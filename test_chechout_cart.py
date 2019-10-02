@@ -43,14 +43,14 @@ class needFunc():
 nf = needFunc()
 
 
-class Test_registration_random_user(unittest.TestCase):
+class Test_checkout_cart(unittest.TestCase):
 
     def setUp(self):
         self.driver = webdriver.Chrome()
         self.driver.get("http://localhost/litecart/en/")
         self.driver.implicitly_wait(60)
 
-    def test_reg_rand_user(self):
+    def test_checkout(self):
         driver = self.driver
 
         nf.test_add_prod_to_cart(driver)
