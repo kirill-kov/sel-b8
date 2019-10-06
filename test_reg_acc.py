@@ -4,7 +4,7 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.common.keys import Keys
-import time
+import time, random
 
 class needFunc():
 
@@ -46,7 +46,7 @@ nf = needFunc()
 first_name = 'Arnold'
 last_name =  'Schwarzenegger'
 street = 'Hollywood st'
-email = 'mr_universe@gmail.com'
+email = '{0}_{1}'.format(random.randint(0,1000),'mr_universe@gmail.com')
 phone = '+1234567890'
 postal_code = '10001'
 city = 'Los Angeles'
