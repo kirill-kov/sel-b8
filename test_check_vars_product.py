@@ -1,3 +1,4 @@
+import re
 import unittest
 from selenium import webdriver
 from selenium.webdriver.common.by import By
@@ -13,6 +14,28 @@ class needFunc():
 
         except AssertionError:
             print('{} =/= {}'.format(var1, var2))
+
+    def assert_color_reg_price_func(self, regex, val):
+
+        matches = re.findall(regex, val)
+        r = matches[0]
+        g = matches[1]
+        b = matches[2]
+        if r == g and r == b and g == b:
+            print('Colors are equals')
+        else:
+            print('Colors aren\'t equals')
+
+    def assert_color_sale_price_func(self, regex, val):
+
+        matches = re.findall(regex, val)
+        r = matches[0]
+        g = matches[1]
+        b = matches[2]
+        if int(g) == 0 and int(b) == 0:
+            print('Colors are equals')
+        else:
+            print('Colors aren\'t equals')
 
     def correct_page_func(self, driver):
 
@@ -42,14 +65,18 @@ class needFunc():
 
         nf.assert_func(index_name, sub_name)
         nf.assert_func(index_regular_price, sub_regular_price)
-        nf.assert_func(index_color_regular_price, sub_color_regular_price)
+        #nf.assert_func(index_color_regular_price, sub_color_regular_price)
+        nf.assert_color_reg_price_func(regex, index_color_regular_price)
+        nf.assert_color_reg_price_func(regex, sub_color_regular_price)
         nf.assert_func(index_fontsize_regular_price, sub_fontsize_regular_price)
         nf.assert_func(index_sale_price, sub_sale_price)
-        nf.assert_func(index_color_sale_price, index_color_sale_price)
+        #nf.assert_func(index_color_sale_price, sub_color_sale_price)
+        nf.assert_color_sale_price_func(regex, index_color_sale_price)
+        nf.assert_color_sale_price_func(regex, sub_color_sale_price)
         nf.assert_func(index_fontweight_sale_price, sub_fontweight_sale_price)
         nf.assert_func(index_fontsize_sale_price, sub_fontsize_sale_price)
 
-
+regex = r'[0-9]{1,3}'
 server = 'http://localhost/litecart/'
 nf = needFunc()
 
